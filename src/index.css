@@ -3,5 +3,29 @@
 @tailwind utilities;
 
 html {
-    background-color: #4F4A4E;
+  /* background-color: #4f4a4e; */
+  background-color: #27272a;
+}
+
+@media screen and (max-width: 640px) {
+  html {
+    background-color: #4f4a4e;
+  }
+}
+
+@layer components {
+  .framed {
+    /* border */
+    border-style: solid;
+    border-image-source: url("rpg/img/border-image.png");
+    border-image-repeat: repeat;
+    border-image-slice: 6 6 6 6;
+    border-image-width: 18px;
+    border-width: 15px;
+    /* padding: 12px; */
+    /* internal border */
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+  }
 }
