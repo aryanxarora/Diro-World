@@ -6,16 +6,16 @@ const manifestPWA: Partial<VitePWAOptions> = {
   registerType: "prompt",
   includeAssets: ["vite.svg"],
   manifest: {
-    "name": "vite-pwa-app",
-    "short_name": "vite-pwa-app",
+    "name": "Diro's World",
+    "short_name": "Diro's World",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#4F4A4E",
     "lang": "en",
     "scope": "/",
-    "id": "vite-pwa-app",
+    "id": "diro",
     "theme_color": "#4F4A4E",
-    "description": "desc",
+    "description": "The mystical world of Diro",
     "icons": [
       {
         "src": "/icon-192x192.png",
