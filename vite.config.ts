@@ -10,11 +10,11 @@ const manifestPWA: Partial<VitePWAOptions> = {
     "short_name": "vite-pwa-app",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#ffffff",
+    "background_color": "#4F4A4E",
     "lang": "en",
     "scope": "/",
     "id": "vite-pwa-app",
-    "theme_color": "#ffffff",
+    "theme_color": "#4F4A4E",
     "description": "desc",
     "icons": [
       {
