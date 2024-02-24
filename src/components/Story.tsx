@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 
-const Story = () => {  
+const Story = (options,name,story) => {  
     const [name] = useState("Aryan");
     const paragraph = "Once upon a time in the bustling city of San Francisco, there lived an extraordinary young man named Aryan. At the tender age of 23, he was already a brilliant Computer Science student at the prestigious University of California, Berkeley. However, his heart yearned for something more than just algorithms and coding languages. He had an insatiable fascination with mystical dragons, ancient creatures of legend that were said to possess immense wisdom and power.";
-    const options = ["Pathway 1","Pathway 2","Pathway 3"];
+    const options = useState(["Pathway 1","Pathway 2","Pathway 3"]);
 
     return (
     <>
