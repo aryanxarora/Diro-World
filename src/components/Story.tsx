@@ -12,8 +12,8 @@ const Story = () => {
           <div className="rpgui-container framed-golden-2 relative">
             <h1>{name}'s' World</h1>
           </div>
-          <div className="rpgui-container framed-golden relative">
-            <p style={{fontSize:"13px !important"}}>
+          <div className="!text-[10px] rpgui-container framed-golden relative">
+            <p>
             {paragraph}
             </p>
           </div>
