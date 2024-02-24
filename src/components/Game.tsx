@@ -1,5 +1,7 @@
-import React, { useState } from "react"
+import { useState } from "react"
+import { setCookie } from "cookies-next"
 import dragon from "../assets/dragon.png"
+import { generatedUserId } from "../app/functions"
 
 const Game = () => {
   const [name, setName] = useState("Traveler")
@@ -16,6 +18,11 @@ const Game = () => {
   }
   const handleHobby = (event: any) => {
     setHobby(event.target.value)
+  }
+
+  const handleStart = async () => {
+    const data = await generatedUserId(name, age, hobby)
+    console.log(data)
   }
 
   return (
@@ -37,6 +44,7 @@ const Game = () => {
               <input
                 className="border shadow-inner"
                 type="text"
+                value={name}
                 onChange={handleName}
               />
             </div>
@@ -46,6 +54,7 @@ const Game = () => {
               <input
                 className="border shadow-inner"
                 type="number"
+                value={age}
                 onChange={handleAge}
               />
             </div>
@@ -56,9 +65,12 @@ const Game = () => {
                 name="hoobies"
                 id="hobbies"
                 className="border"
+                value={hobby}
                 onChange={handleHobby}
               ></textarea>
-              <button className="rpgui-button w-full">Start</button>
+              <button className="rpgui-button w-full" onClick={handleStart}>
+                <p>Start</p>
+              </button>
             </div>
           </div>
         </div>
