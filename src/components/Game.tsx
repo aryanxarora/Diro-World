@@ -1,32 +1,31 @@
 import React, { useState } from "react"
+import dragon from "../assets/dragon.png"
 
 const Game = () => {
   const [name, setName] = useState("Traveler")
-  const [age, setAge] = useState(269)
+  const [age, setAge] = useState("269")
   const [hobby, setHobby] = useState(
     "Mystical arts of the arcane and the unknown.",
   )
 
   const handleName = (event: any) => {
     setName(event.target.value)
-    console.log(name)
   }
   const handleAge = (event: any) => {
     setAge(event.target.value)
-    console.log(name)
   }
   const handleHobby = (event: any) => {
     setHobby(event.target.value)
-    console.log(name)
   }
 
   return (
     <>
       <div className="rpgui-content relative">
         <div className="rpgui-container w-full h-full flex flex-col items-center justify-between p-10">
-          <div className="rpgui-container framed-golden-2 relative text-xl">
+          <div className="rpgui-container framed-golden-2 relative">
             <h1>Diro's World</h1>
           </div>
+          <img src={dragon} alt="" width={150} />
           <h1>
             Welcome to the magical tale of Diro <a>{name}</a> of age{" "}
             <a>{age}</a> who is interested in <a>{hobby}</a>
@@ -52,7 +51,7 @@ const Game = () => {
             </div>
             {/* interests */}
             <div>
-              <label>What are your interests</label>
+              <label>Interests:</label>
               <textarea
                 name="hoobies"
                 id="hobbies"
