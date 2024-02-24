@@ -1,4 +1,4 @@
-import Start from "./Start"
+import Game from "./Game"
 import Loading from "./Loading"
 
-export { Start, Loading };
+export { Game, Loading };
