@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import { lazy, Suspense, useEffect } from "react"
 import { Loading } from "./components"
 const Game = lazy(() => import("./components/Game"))
+const Story = lazy(() => import("./components/Quest"))
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Suspense fallback={<Loading />}>
         <Routes>
           <Route path="/" element={<Game />} />
+          <Route path="/quest" element={<Story />} />
         </Routes>
       </Suspense>
     </Router>

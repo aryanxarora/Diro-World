@@ -1,6 +1,6 @@
 export const generatedUserId = async (name: string, age: string, interests: string) => {
     try {
-      const response = await fetch('https://thick-bottles-glow.loca.lt/api/generate', {
+      const response = await fetch('https://dull-houses-wink.loca.lt/api/generate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,8 +2,15 @@ import { useState } from "react"
 import { setCookie } from "cookies-next"
 import dragon from "../assets/dragon.png"
 import { generatedUserId } from "../app/functions"
+import { useNavigate } from "react-router-dom"
+import { useAppDispatch } from "../app/hooks"
+import { setStory } from "../lib/slice"
+import { Story } from "../types"
 
 const Game = () => {
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+
   const [name, setName] = useState("Traveler")
   const [age, setAge] = useState("269")
   const [hobby, setHobby] = useState(
@@ -21,8 +28,16 @@ const Game = () => {
   }
 
   const handleStart = async () => {
+    setCookie("userName", name)
     const data = await generatedUserId(name, age, hobby)
-    console.log(data)
+    setCookie("userId", data.id)
+    const story: Story = {
+      id: data.id,
+      message: data.message,
+      options: data.options,
+    }
+    dispatch(setStory(story as Story))
+    navigate("/quest")
   }
 
   return (
