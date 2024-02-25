@@ -1,4 +1,5 @@
 const SERVER_URI = import.meta.env.VITE_SERVER_URI
+console.log(SERVER_URI)
 
 export const generatedUserId = async (
   name: string,
