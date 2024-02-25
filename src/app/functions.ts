@@ -1,4 +1,4 @@
-const SERVER_URI: string = "https://mean-fans-shine.loca.lt"
+const SERVER_URI: string = "https://salty-cobras-build.loca.lt"
 
 export const generatedUserId = async (
   name: string,

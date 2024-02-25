@@ -25,7 +25,12 @@ const Quest = () => {
   }, [])
 
   const handleChoice = async () => {
-    if (reply.includes("quit") || reply.includes("end")) handleQuit()
+    if (
+      reply.includes("quit") ||
+      reply.includes("end") ||
+      reply.includes("stop")
+    )
+      handleQuit()
     setLoading(true)
     const res = await generateReply(userId, reply)
     console.log(res)
