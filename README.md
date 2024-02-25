@@ -1,22 +1,4 @@
-# Progressive Web App (PWA) Boilerplate
+# Diro's World
+A never-ending fantasy world role-playing game (RPG) that is personalized to you and your interests. Powered by Artificial Intelligence.
 
-### Installation
-```sh
-npm install
-npm run dev
-```
-
-### Technologies Configured
-
-- Vite.js (React) with PWA
-- TypeScript
-- Tailwind CSS
-- Redux
-- React Router
-
-### Documentation
-
-- [Vite](https://vitejs.dev/guide/)
-- [TypeScript](https://www.typescriptlang.org/docs/)
-- [Tailwind CSS](https://tailwindcss.com/docs/utility-first)
-- [Redux](https://react-redux.js.org/using-react-redux/usage-with-typescript)
+![diro-world](https://res.cloudinary.com/dm0kkwirn/image/upload/v1708904102/portfolio/projects/a6sgz4n0ewjoi42k3dxm.png)
