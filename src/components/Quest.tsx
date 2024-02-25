@@ -1,34 +1,55 @@
-import { useState } from "react"
+import { useEffect } from "react"
 import { useAppSelector } from "../app/hooks"
 import { Story } from "../types"
 import { getCookie } from "cookies-next"
+import { useNavigate } from "react-router-dom"
+import { motion } from "framer-motion"
 
 const Quest = () => {
-  // const [characterName] = useState("Aryan")
-  // const paragraph = "Once upon a time..."
-  // const pathways = useState(["Pathway 1", "Pathway 2", "Pathway 3"])
+  const navigate = useNavigate()
+
   const userName = getCookie("userName")
   const story: Story = useAppSelector(state => state.app.story)
+
   console.log(story)
+
+  useEffect(() => {
+    if (story.id === "") {
+      navigate("/")
+    }
+  }, [])
+
+  const handleChoice = () => {
+    console.log("Choice")
+  }
 
   return (
     <>
-      <div className="rpgui-content relative flex justify-center">
-        <div className=" w-full gap-10 lg:w-2/3 lg:framed h-full flex flex-col items-center justify-between p-10 bg-[#4F4A4E] lg:my-5 lg:rounded-2xl md:m-5 md:rounded-2xl md:framed">
-          <div className="rpgui-container framed-golden-2 relative">
+      <div className="rpgui-content relative">
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="rpgui-container w-full h-full overflow-scroll flex flex-col items-center justify-between p-10 gap-10"
+        >
+          {/* <div className="rpgui-container framed relative">
             <h1>{userName}'s World</h1>
-          </div>
-          <div className="!text-[10px] rpgui-container framed-golden relative lg:mx-8">
+          </div> */}
+          <div className="rpgui-container framed-golden relative">
             <p>{story.message}</p>
           </div>
-          <div className="flex flex-col">
-            {story.options.map((option, index) => (
-              <button key={index} className="rpgui-button golden">
-                <p className="rpgui-center">{option}</p>
-              </button>
+          <div className="flex flex-col gap-5">
+            {story.options.map((choice, index) => (
+              <div
+                key={index}
+                className="rpgui-container relative framed-golden-2 rpgui-cursor-point"
+                onClick={handleChoice}
+              >
+                <p className="rpgui-center">{choice}</p>
+              </div>
             ))}
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   )

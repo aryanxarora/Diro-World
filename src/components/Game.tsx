@@ -6,11 +6,14 @@ import { useNavigate } from "react-router-dom"
 import { useAppDispatch } from "../app/hooks"
 import { setStory } from "../lib/slice"
 import { Story } from "../types"
+import { Loading } from "."
+import { motion } from "framer-motion"
 
 const Game = () => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
+  const [loading, setLoading] = useState(false)
   const [name, setName] = useState("Traveler")
   const [age, setAge] = useState("269")
   const [hobby, setHobby] = useState(
@@ -28,6 +31,7 @@ const Game = () => {
   }
 
   const handleStart = async () => {
+    setLoading(true)
     setCookie("userName", name)
     const data = await generatedUserId(name, age, hobby)
     setCookie("userId", data.id)
@@ -40,10 +44,17 @@ const Game = () => {
     navigate("/quest")
   }
 
+  if (loading) return <Loading />
+
   return (
     <>
       <div className="rpgui-content relative flex justify-center">
-        <div className="w-full lg:w-2/3 lg:framed h-full flex flex-col items-center justify-between p-10 bg-[#4F4A4E] lg:my-5 lg:rounded-2xl md:m-5 md:rounded-2xl md:framed">
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full lg:w-2/3 lg:framed h-full flex flex-col items-center justify-between p-10 bg-[#4F4A4E] lg:my-5 lg:rounded-2xl md:m-5 md:rounded-2xl md:framed"
+        >
           <div className="rpgui-container framed-golden-2 relative">
             <h1>Diro's World</h1>
           </div>
@@ -88,7 +99,7 @@ const Game = () => {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </>
   )

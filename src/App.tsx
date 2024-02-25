@@ -1,6 +1,6 @@
 import "./App.css"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { lazy, Suspense, useEffect } from "react"
+import { lazy, Suspense } from "react"
 import { Loading } from "./components"
 const Game = lazy(() => import("./components/Game"))
 const Story = lazy(() => import("./components/Quest"))
