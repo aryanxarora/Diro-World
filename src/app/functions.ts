@@ -1,3 +1,5 @@
+const SERVER_URI: string = "https://mean-fans-shine.loca.lt"
+
 export const generatedUserId = async (
   name: string,
   age: string,
@@ -5,7 +7,7 @@ export const generatedUserId = async (
 ) => {
   try {
     const response = await fetch(
-      "https://mean-fans-shine.loca.lt/api/generate",
+      `${SERVER_URI}/api/test-generate`,
       {
         method: "POST",
         headers: {
@@ -32,7 +34,7 @@ export const generatedUserId = async (
 
 export const generateReply = async (id: string, message: string) => {
   try {
-    const response = await fetch("https://mean-fans-shine.loca.lt/api/reply", {
+    const response = await fetch(`${SERVER_URI}/api/textme`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,9 +50,30 @@ export const generateReply = async (id: string, message: string) => {
     }
 
     const data = await response.json()
-    // console.log("generateReply (51) ", data)
     return data
   } catch (error) {
     console.error("Error:", error)
   }
+}
+
+export const quitGame = async () => {
+
+  try {
+    const response = await fetch(`${SERVER_URI}/api/quit`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status}`)
+    }
+
+    const data = await response.json()
+    return data
+  } catch (error) {
+    console.error("Error:", error)
+  }
+
 }
