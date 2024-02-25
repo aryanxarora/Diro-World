@@ -1,4 +1,4 @@
-const SERVER_URI: string = "https://salty-cobras-build.loca.lt"
+const SERVER_URI = import.meta.env.VITE_SERVER_URI
 
 export const generatedUserId = async (
   name: string,
@@ -6,20 +6,17 @@ export const generatedUserId = async (
   interests: string,
 ) => {
   try {
-    const response = await fetch(
-      `${SERVER_URI}/api/test-generate`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          age: age,
-          interests: interests,
-        }),
+    const response = await fetch(`${SERVER_URI}/api/test-generate`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-    )
+      body: JSON.stringify({
+        name: name,
+        age: age,
+        interests: interests,
+      }),
+    })
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status}`)
@@ -57,7 +54,6 @@ export const generateReply = async (id: string, message: string) => {
 }
 
 export const quitGame = async () => {
-
   try {
     const response = await fetch(`${SERVER_URI}/api/quit`, {
       method: "GET",
@@ -75,5 +71,4 @@ export const quitGame = async () => {
   } catch (error) {
     console.error("Error:", error)
   }
-
 }
