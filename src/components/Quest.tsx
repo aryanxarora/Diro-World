@@ -13,12 +13,12 @@ const Quest = () => {
 
   return (
     <>
-      <div className="rpgui-content relative">
-        <div className="rpgui-container w-full h-full flex flex-col items-center justify-between p-10">
+      <div className="rpgui-content relative flex justify-center">
+        <div className=" w-full gap-10 lg:w-2/3 lg:framed h-full flex flex-col items-center justify-between p-10 bg-[#4F4A4E] lg:my-5 lg:rounded-2xl md:m-5 md:rounded-2xl md:framed">
           <div className="rpgui-container framed-golden-2 relative">
             <h1>{userName}'s World</h1>
           </div>
-          <div className="!text-[10px] rpgui-container framed-golden relative">
+          <div className="!text-[10px] rpgui-container framed-golden relative lg:mx-8">
             <p>{story.message}</p>
           </div>
           <div className="flex flex-col">
