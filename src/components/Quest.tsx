@@ -1,13 +1,18 @@
-import { useEffect } from "react"
-import { useAppSelector } from "../app/hooks"
+import { useEffect, useState } from "react"
+import { useAppDispatch, useAppSelector } from "../app/hooks"
 import { Story } from "../types"
 import { getCookie } from "cookies-next"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
+import { generateReply } from "../app/functions"
+import { setStory } from "../lib/slice"
 
 const Quest = () => {
   const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(false)
 
+  const userId = getCookie("userId") || ""
   const userName = getCookie("userName")
   const story: Story = useAppSelector(state => state.app.story)
 
@@ -19,8 +24,18 @@ const Quest = () => {
     }
   }, [])
 
-  const handleChoice = () => {
-    console.log("Choice")
+  const handleChoice = async (index: number) => {
+    // console.log("handleChoice (25) ", userId, story.options[index])
+    const res = await generateReply(userId, story.options[index])
+    // console.log("res (27) ", res)
+    const contStory: Story = {
+      id: res.id,
+      message: res.message,
+      options: res.options,
+    }
+    setLoading(true)
+    dispatch(setStory(contStory as Story))
+    navigate("/quest")
   }
 
   return (
@@ -43,7 +58,7 @@ const Quest = () => {
               <div
                 key={index}
                 className="rpgui-container relative framed-golden-2 rpgui-cursor-point"
-                onClick={handleChoice}
+                onClick={() => handleChoice(index)}
               >
                 <p className="rpgui-center">{choice}</p>
               </div>
