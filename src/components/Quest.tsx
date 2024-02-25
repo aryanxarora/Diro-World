@@ -26,9 +26,9 @@ const Quest = () => {
 
   const handleChoice = async () => {
     if (
-      reply.includes("quit") ||
-      reply.includes("end") ||
-      reply.includes("stop")
+      reply.toLocaleLowerCase().includes("quit") ||
+      reply.toLocaleLowerCase().includes("end") ||
+      reply.toLocaleLowerCase().includes("stop")
     )
       handleQuit()
     setLoading(true)
