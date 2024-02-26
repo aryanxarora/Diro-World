@@ -33,14 +33,14 @@ const Game = () => {
   const handleStart = async () => {
     setLoading(true)
     setCookie("userName", name)
-    const data = await generatedUserId(name, age, hobby)
-    setCookie("userId", data.id)
-    const story: Story = {
-      id: data.id,
-      message: data.message,
-      options: data.options,
-    }
-    dispatch(setStory(story as Story))
+    // const data = await generatedUserId(name, age, hobby)
+    // setCookie("userId", data.id)
+    // const story: Story = {
+    //   id: data.id,
+    //   message: data.message,
+    //   options: data.options,
+    // }
+    // dispatch(setStory(story as Story))
     navigate("/quest")
   }
 

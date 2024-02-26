@@ -1,56 +1,58 @@
 import { useEffect, useState } from "react"
-import { useAppDispatch, useAppSelector } from "../app/hooks"
-import { Story } from "../types"
 import { getCookie } from "cookies-next"
 import { useNavigate } from "react-router-dom"
 import { motion } from "framer-motion"
-import { generateReply, quitGame } from "../app/functions"
-import { setStory } from "../lib/slice"
 import Loading from "./Loading"
 
 const Quest = () => {
   const navigate = useNavigate()
-  const dispatch = useAppDispatch()
-  const [loading, setLoading] = useState(false)
-  const [reply, setReply] = useState("")
-
+  // const dispatch = useAppDispatch()
+  const [loading, setLoading] = useState(true)
   const userName = getCookie("userName")
-  const userId = getCookie("userId") || ""
-  const story: Story = useAppSelector(state => state.app.story)
+  // const userId = getCookie("userId") || ""
+  // const story: Story = useAppSelector(state => state.app.story)
 
   useEffect(() => {
-    if (story.id === "" || story.message === "" || story.options.length === 0) {
+    if (userName === "" || userName === undefined) {
       navigate("/")
     }
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
   }, [])
 
-  const handleChoice = async () => {
-    if (
-      reply.toLocaleLowerCase().includes("quit") ||
-      reply.toLocaleLowerCase().includes("end") ||
-      reply.toLocaleLowerCase().includes("stop")
-    )
-      handleQuit()
-    setLoading(true)
-    const res = await generateReply(userId, reply)
-    console.log(res)
-    const contStory: Story = {
-      id: res.id,
-      message: res.message,
-      options: res.options,
-    }
-    dispatch(setStory(contStory as Story))
-    setLoading(false)
+  const story = {
+    message: `Dear ${userName}, I am sorry to inform you that the game has been paused. Due to the operational costs associated with utilizing OpenAI's API services, we've had to temporarily halt the game. In the meantime you may checkout the following options:`,
+    options: ["Portfolio", "LinkedIn", "Github"],
   }
 
+  // const handleChoice = async () => {
+  //   if (
+  //     reply.toLocaleLowerCase().includes("quit") ||
+  //     reply.toLocaleLowerCase().includes("end") ||
+  //     reply.toLocaleLowerCase().includes("stop")
+  //   )
+  //     handleQuit()
+  //   setLoading(true)
+  //   const res = await generateReply(userId, reply)
+  //   console.log(res)
+  //   const contStory: Story = {
+  //     id: res.id,
+  //     message: res.message,
+  //     options: res.options,
+  //   }
+  //   dispatch(setStory(contStory as Story))
+  //   setLoading(false)
+  // }
+
   const handleQuit = () => {
-    quitGame()
+    // quitGame()
     navigate("/")
   }
 
-  const handleReply = (event: any) => {
-    setReply(event.target.value)
-  }
+  // const handleReply = (event: any) => {
+  //   setReply(event.target.value)
+  // }
 
   // const handleChoice = async (index: number) => {
   //   setLoading(true)
@@ -83,24 +85,22 @@ const Quest = () => {
             </button>
           </div>
           <div className="rpgui-container framed-golden relative">
-            <p>{story.message}</p>
+            <p>{`Dear ${userName}, I am sorry to inform you that the game has been paused. Due to the operational costs associated with utilizing OpenAI's API services, we've had to temporarily halt the game.`}</p>
+            <br />
+            <p>In the meantime you may checkout the following options:</p>
           </div>
           <div className="flex flex-col gap-5 w-full">
             {story.options.map((choice, index) => (
-              <div
+              <a
                 key={index}
+                target="_blank"
+                rel="noreferrer"
+                href={` ${index === 0 ? "https://aryanarora.vercel.app/" : index === 1 ? "https://www.linkedin.com/in/aryanxarora/" : "https://github.com/aryanxarora"}`}
                 className="rpgui-container relative framed-golden-2"
               >
                 <p className="rpgui-center">{choice}</p>
-              </div>
+              </a>
             ))}
-          </div>
-          <div className="rpgui-container framed relative w-full">
-            <label>Action:</label>
-            <textarea className="border shadow-inner" onChange={handleReply} />
-            <button className="rpgui-button" onClick={handleChoice}>
-              <p>Submit</p>
-            </button>
           </div>
         </motion.div>
       </div>
